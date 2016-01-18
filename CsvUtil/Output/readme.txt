@@ -1,0 +1,1 @@
+﻿By default all reports are stored in this folder.

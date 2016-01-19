@@ -8,6 +8,12 @@ namespace CsvUtil.Models
 {
     public class CsvData
     {
-
+        public List<CsvRow> Rows
+        {
+            get { return _rows; }
+            set { _rows = value; }
+        }
+        private List<CsvRow> _rows = new List<CsvRow>();
     }
+
 }

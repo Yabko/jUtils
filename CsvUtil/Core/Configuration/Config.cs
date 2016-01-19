@@ -1,16 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace CsvUtil.Core
+namespace CsvUtil.Core.Configuration
 {
     public class Config
     {
         public string InputPath { get; private set; }
         public string OutputPath { get; private set; }
-        public string TemplatePath { get { return @"Templates\template.html"; } }
+
+        public string CssName { get { return "style.css"; } }
+        public string CssFilePath { get { return $@"Templates\{CssName}"; } }
+
+        public string HtmlPageTemplatePath { get { return @"Templates\template.html"; } }
+        public string SummaryTableTemplatePath { get { return @"Templates\jmeterSummaryTable.html"; } }
 
         /// <summary>
         /// we expect next args format provided for this console utility:

@@ -57,10 +57,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\Config.cs" />
+    <Compile Include="Core\Configuration\Config.cs" />
+    <Compile Include="Core\Configuration\TemplatesProvider.cs" />
     <Compile Include="Core\CsvParser.cs" />
-    <Compile Include="Core\HtmlWorker.cs" />
+    <Compile Include="Core\CsvProcessor.cs" />
+    <Compile Include="Core\Html\SummaryTable.cs" />
     <Compile Include="Models\CsvData.cs" />
+    <Compile Include="Models\CsvRow.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -86,12 +89,15 @@
     <Content Include="Templates\style.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Templates\jmeterSummaryTable.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Templates\template.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="TestData\testData.txt">
+    <None Include="TestData\testData.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

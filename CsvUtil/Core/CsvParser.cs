@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using CsvUtil.Core.Configuration;
+using CsvUtil.Models;
 
 namespace CsvUtil.Core
 {
@@ -16,16 +18,24 @@ namespace CsvUtil.Core
             _config = configuration;
         }
 
-        public string Parse()
+        public CsvData Parse()
         {
             var path = _config.InputPath;
-            var stream = new StreamReader(path);
-            Console.WriteLine("Loading csv report...");
-            var text = stream.ReadToEnd();
-            Console.WriteLine("Loaded!");
-            Console.WriteLine(text);
+            var data = new CsvData();
 
-            return text;
+            Console.WriteLine("Loading csv report...");
+            using (var stream = new StreamReader(path))
+            {
+                string line;
+                while ((line = stream.ReadLine()) != null)
+                {
+                    var row = new CsvRow();
+                    row.PlainData = line.Split(',');
+                    data.Rows.Add(row);
+                }
+            }
+            Console.WriteLine("Parsed!");
+            return data;
         }
 
 

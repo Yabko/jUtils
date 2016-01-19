@@ -1,3 +1,23 @@
 h1 {
-	font-size: 20pt; color: red; font-family: consolas;
+    font-size: 20pt;
+    color: red;
+    font-family: consolas;
+}
+
+th {
+    background: #aaaaaa;
+    font-size: 14pt;
+    background: rgba(50,50,140,0.8);
+}
+
+tr.evenRow {
+    font-size: 12pt;
+    font-family: consolas;
+    background: beige;
+}
+
+tr.oddRow {
+    font-size: 12pt;
+    font-family: consolas;
+    background: burlywood;
 }

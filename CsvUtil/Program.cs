@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using CsvUtil.Core.Configuration;
 
 namespace CsvUtil
 {
@@ -17,9 +18,11 @@ namespace CsvUtil
             var datestart = DateTime.Now;
             Console.WriteLine("Processing started at: {0}", datestart);
             var parser = new CsvParser(config);
-            var content = parser.Parse();
-            var worker = new HtmlWorker(config);
-            worker.Write(content);
+            var processor = new CsvProcessor(config);
+
+            var data = parser.Parse();
+            processor.CreateHtmlResult(data);
+
             var dateend = DateTime.Now;
             Console.WriteLine("Total Duration: {0} sec.", (dateend - datestart).TotalSeconds);
             Console.ReadKey();

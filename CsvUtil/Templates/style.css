@@ -1,23 +1,36 @@
 h1 {
-    font-size: 20pt;
-    color: red;
+    color: skyblue;
+    font-family: consolas;
+}
+
+h2 {
+    color: skyblue;
+    font-family: consolas;
+}
+
+h3 {
+    color: skyblue;
     font-family: consolas;
 }
 
 th {
     background: #aaaaaa;
     font-size: 14pt;
-    background: rgba(50,50,140,0.8);
+    background: deepskyblue;
 }
 
 tr.evenRow {
     font-size: 12pt;
     font-family: consolas;
-    background: beige;
+    background: ghostwhite;
 }
 
 tr.oddRow {
     font-size: 12pt;
     font-family: consolas;
-    background: burlywood;
+    background: lightblue;
+}
+
+td {
+    padding: 0px 8px
 }

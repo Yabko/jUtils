@@ -1,18 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
+using CsvUtil.Abstractions;
 using CsvUtil.Core.Configuration;
 using CsvUtil.Core.Html;
+using CsvUtil.Core.Processing.Common;
+using CsvUtil.Core.Processing.JMeter;
 using CsvUtil.Models;
 
-namespace CsvUtil.Core
+namespace CsvUtil.Core.Processing
 {
     class CsvProcessor
     {
+        #region Fields
+
         private Config _config;
         private TemplatesProvider _templatesProvider;
+
+        #endregion
+
+        #region Constructor
 
         public CsvProcessor(Config configuration)
         {
@@ -20,18 +26,33 @@ namespace CsvUtil.Core
             _templatesProvider = new TemplatesProvider(_config);
         }
 
+        #endregion
+
         public void CreateHtmlResult(CsvData sourceData)
         {
-            var path = new System.IO.FileInfo(_config.OutputPath);
+            ICsvProcessor internalProcessor;
+            if (_config.IsJMeterMode)
+            {
+                internalProcessor = new JMeterCsvProcessor();
+            }
+            else
+            {
+                internalProcessor = new CommonCsvProcessor();   
+            }
+            var reprot = internalProcessor.Process(sourceData, _templatesProvider);
+       
+            writeResult(reprot);
+        }
 
-            var table = new SummaryTable();
-            var tableHtml = table.BuildHtmlTable(sourceData, _templatesProvider);
-
+        private void writeResult(string result)
+        {
+            var path = new FileInfo(_config.OutputPath);
             using (var swrite = new System.IO.StreamWriter(path.FullName))
             {
-                swrite.Write(_templatesProvider.HtmlPageTemplate, tableHtml);
+                swrite.Write(result);
             }
 
+            // save related css
             try
             {
                 File.Copy(_config.CssFilePath, $@"{path.Directory.FullName}\{_config.CssName}", true);

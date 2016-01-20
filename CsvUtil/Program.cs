@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using CsvUtil.Core.Configuration;
+using CsvUtil.Core.Processing;
 
 namespace CsvUtil
 {
@@ -25,7 +26,7 @@ namespace CsvUtil
 
             var dateend = DateTime.Now;
             Console.WriteLine("Total Duration: {0} sec.", (dateend - datestart).TotalSeconds);
-            Console.ReadKey();
+            //Console.ReadKey();
         }
     }
 }

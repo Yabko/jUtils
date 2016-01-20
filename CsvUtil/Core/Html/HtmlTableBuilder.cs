@@ -8,11 +8,11 @@ using CsvUtil.Models;
 
 namespace CsvUtil.Core.Html
 {
-    public class SummaryTable
+    public class HtmlTableBuilder
     {
-        public string BuildHtmlTable(CsvData data, TemplatesProvider provider)
+        public string Build(CsvData data, TemplatesProvider provider)
         {
-            var summaryTableTemplate = provider.SummaryTableTemplate;
+            var allResultsTableTemplate = provider.AllResultsTableTemplate;
             var sb = new StringBuilder();
             var i = 0;
             foreach (var row in data.Rows)
@@ -27,7 +27,7 @@ namespace CsvUtil.Core.Html
                 i++;
             }
 
-            return string.Format(summaryTableTemplate, sb);
+            return string.Format(allResultsTableTemplate, sb);
         }
     }
 }

@@ -21,21 +21,37 @@
         }
         private volatile string _htmlPageTemplate;
 
+        public string AllResultsTableTemplate
+        {
+            get
+            {
+                // double check lock
+                if (_allResultsTableTemplate != null) return _allResultsTableTemplate;
+                lock (_lockObj)
+                {
+                    if (_allResultsTableTemplate != null) return _allResultsTableTemplate;
+                    _allResultsTableTemplate = getTemplate(_config.AllResultsTableTemplatePath);
+                    return _allResultsTableTemplate;
+                }
+            }
+        }
+        private volatile string _allResultsTableTemplate;
+
         public string SummaryTableTemplate
         {
             get
             {
                 // double check lock
-                if (_summaryTableTemplate != null) return _summaryTableTemplate;
+                if (_summaryTemplate != null) return _summaryTemplate;
                 lock (_lockObj)
                 {
-                    if (_summaryTableTemplate != null) return _summaryTableTemplate;
-                    _summaryTableTemplate = getTemplate(_config.SummaryTableTemplatePath);
-                    return _summaryTableTemplate;
+                    if (_summaryTemplate != null) return _summaryTemplate;
+                    _summaryTemplate = getTemplate(_config.SummaryTableTemplatePath);
+                    return _summaryTemplate;
                 }
             }
         }
-        private volatile string _summaryTableTemplate;
+        private volatile string _summaryTemplate;
 
         public TemplatesProvider(Config config)
         {

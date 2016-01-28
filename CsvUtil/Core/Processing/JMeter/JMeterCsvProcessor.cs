@@ -10,11 +10,11 @@ namespace CsvUtil.Core.Processing.JMeter
     public class JMeterCsvProcessor : ICsvProcessor
     {
         public string Process(CsvData data, TemplatesProvider provider)
-        {
+        {          
             var jDatas = from row in data.Rows
                          group row by row.PlainData[2] into grouped
                          select new JMeterData(grouped.ToList(), grouped.Key.Trim());
-           
+
             var sb = new StringBuilder();
 
             foreach (var methodData in jDatas)

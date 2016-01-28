@@ -24,7 +24,7 @@
 1452859338133,77,Get_All_Currencies,200,OK,User_SOME_get_all_currencies 1-3,text,true,19380,7,7,76
 1452859338122,90,Get_All_Currencies,200,OK,User_SOME_get_all_currencies 1-4,text,true,19380,7,7,88
 1452859338044,177,Get_All_Currencies,200,OK,User_SOME_get_all_currencies 1-6,text,true,19380,7,7,137
-1452859338168,63,Get_All_Currencies,200,OK,User_SOME_get_all_currencies 1-2,text,true,19380,7,7,62
+1452859338168,63,Get_All_Currencies,404,OK,User_SOME_get_all_currencies 1-2,text,true,19380,7,7,62
 1452859338156,75,Get_All_Currencies,200,OK,User_SOME_get_all_currencies 1-1,text,true,19380,7,7,74
 1452859338209,56,Get_All_Currencies,200,OK,User_SOME_get_all_currencies 1-5,text,true,19380,8,8,56
 1452859338211,55,Get_All_Currencies,200,OK,User_SOME_get_all_currencies 1-3,text,true,19380,8,8,55

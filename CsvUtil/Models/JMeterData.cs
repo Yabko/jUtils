@@ -44,7 +44,12 @@ namespace CsvUtil.Models
             Summary["Median Response Time"] = Rows.Median(it => it.Elapsed) + " ms";
             Summary["Min Response Time"] = Rows.Min(it => it.Elapsed) + " ms";
             Summary["Max Response Time"] = Rows.Max(it => it.Elapsed) + " ms";
-            Summary["Response Time Deviation"] = Rows.StandardDeviation(it => it.Elapsed).ToString("N2") + " ms";
+            if (Rows.Count > 1)
+            {
+                Summary["Response Time Deviation"] = Rows.StandardDeviation(it => it.Elapsed).ToString("N2") + " ms";
+            }
+            Summary["Code"] = Rows.Select(it => it.ResponceCode).Distinct().Aggregate("", (seed, code) => seed + " " + code);
+            
             var mode = Rows.Mode(it => it.Elapsed);
             var count = ((double)Rows.Count(it => it.Elapsed == mode) / Rows.Count * 100).ToString("N2");
             Summary[$"Most Common Value ({count}%)"] = mode + "ms";

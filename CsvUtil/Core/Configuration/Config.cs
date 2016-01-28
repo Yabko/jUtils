@@ -8,6 +8,7 @@ namespace CsvUtil.Core.Configuration
 
         public string InputPath { get; private set; }
         public string OutputPath { get; private set; }
+        public string ErrorsOutputPath { get; private set; }
 
         public string CssName { get { return "style.css"; } }
         public string CssFilePath { get { return $@"Templates\{CssName}"; } }
@@ -27,6 +28,10 @@ namespace CsvUtil.Core.Configuration
             if (args.Length < 2) throw new ArgumentException("App has to be started with two required parameters, csv file and output file");
             InputPath = args[0];
             OutputPath = args[1];
+            if (args.Length > 2)
+            {
+                ErrorsOutputPath = args[2];
+            }
             IsJMeterMode = true;
         }
 

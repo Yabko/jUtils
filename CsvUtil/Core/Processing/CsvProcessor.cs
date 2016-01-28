@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using CsvUtil.Abstractions;
 using CsvUtil.Core.Configuration;
 using CsvUtil.Core.Html;
@@ -30,6 +31,23 @@ namespace CsvUtil.Core.Processing
 
         public void CreateHtmlResult(CsvData sourceData)
         {
+            var internalProcessor = getProcessor();
+            // process all data
+            var reprot = internalProcessor.Process(sourceData, _templatesProvider);
+
+            var errors = sourceData.Rows.Where(it => it.PlainData[3] != "200").ToList();
+            if (errors.Count > 0 && !string.IsNullOrEmpty(_config.ErrorsOutputPath))
+            {
+                var errorProcessor = getProcessor();
+                var erorsLog = errorProcessor.Process(new CsvData() { Rows = errors}, _templatesProvider);                
+                writeResult(erorsLog,_config.ErrorsOutputPath);
+            }          
+       
+            writeResult(reprot,_config.OutputPath);
+        }
+
+        private ICsvProcessor getProcessor()
+        {
             ICsvProcessor internalProcessor;
             if (_config.IsJMeterMode)
             {
@@ -37,16 +55,14 @@ namespace CsvUtil.Core.Processing
             }
             else
             {
-                internalProcessor = new CommonCsvProcessor();   
+                internalProcessor = new CommonCsvProcessor();
             }
-            var reprot = internalProcessor.Process(sourceData, _templatesProvider);
-       
-            writeResult(reprot);
+            return internalProcessor;
         }
 
-        private void writeResult(string result)
+        private void writeResult(string result, string filepath)
         {
-            var path = new FileInfo(_config.OutputPath);
+            var path = new FileInfo(filepath);
             using (var swrite = new System.IO.StreamWriter(path.FullName))
             {
                 swrite.Write(result);

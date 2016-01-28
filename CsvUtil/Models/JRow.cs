@@ -31,6 +31,9 @@ namespace CsvUtil.Models
         {
             TimeStamp = convertUnixTimeStampToDateTime(double.Parse(raw.PlainData[0]));
             Elapsed = int.Parse(raw.PlainData[1]);
+            int code = 0;
+            int.TryParse(raw.PlainData[3], out code);
+            ResponceCode = code;
         }
 
         #endregion

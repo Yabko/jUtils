@@ -29,7 +29,7 @@ namespace jUtils.Models
             get { return _normMsTime; }
             set { _normMsTime = value; }
         }
-        private int _normMsTime = 100;
+        private int _normMsTime = 400;
 
         #endregion
 
@@ -70,12 +70,12 @@ namespace jUtils.Models
             // Method ,
             var analysis = new List<string>();
             analysis.Add(MethodName);
-            var coolRows = Rows.Where(row => row.Elapsed <= CoolMsTime);
-            var okRows = Rows.Where(row => row.Elapsed <= NormMsTime && row.Elapsed > CoolMsTime);
-            var badRows = Rows.Where(row => row.Elapsed > NormMsTime);
-            var coolMean = coolRows.Median(it => it.Elapsed);
-            var okMean = okRows.Median(it => it.Elapsed);
-            var badMean = badRows.Median(it => it.Elapsed);
+            var coolRows = Rows.Where(row => row.Elapsed <= CoolMsTime).ToList();
+            var okRows = Rows.Where(row => row.Elapsed <= NormMsTime && row.Elapsed > CoolMsTime).ToList();
+            var badRows = Rows.Where(row => row.Elapsed > NormMsTime).ToList();
+            var coolMean = coolRows.Count == 0 ? 0 : coolRows.Median(it => it.Elapsed);
+            var okMean = okRows.Count == 0 ? 0 : okRows.Median(it => it.Elapsed);
+            var badMean = badRows.Count == 0 ? 0 : badRows.Median(it => it.Elapsed);
 
             var coolCount = coolRows.Count();
             var okCount = okRows.Count();

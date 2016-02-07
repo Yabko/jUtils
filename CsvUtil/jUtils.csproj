@@ -66,10 +66,9 @@
     <Compile Include="Core\Configuration\TemplatesProvider.cs" />
     <Compile Include="Core\CsvParser.cs" />
     <Compile Include="Core\Html\HtmlSummaryBuilder.cs" />
-    <Compile Include="Core\Processing\Common\CommonCsvProcessor.cs" />
     <Compile Include="Core\Processing\CsvProcessor.cs" />
     <Compile Include="Core\Html\HtmlTableBuilder.cs" />
-    <Compile Include="Core\Processing\JMeter\JMeterCsvProcessor.cs" />
+    <Compile Include="Core\Processing\JMeterCsvProcessor.cs" />
     <Compile Include="Models\CsvData.cs" />
     <Compile Include="Models\CsvRow.cs" />
     <Compile Include="Models\JMeterData.cs" />

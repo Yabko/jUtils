@@ -4,7 +4,6 @@ namespace jUtils.Core.Configuration
 {
     public class Config
     {
-        public bool IsJMeterMode { get; private set; }
 
         public string InputPath { get; private set; }
         public string OutputPath { get; private set; }
@@ -32,7 +31,6 @@ namespace jUtils.Core.Configuration
             {
                 ErrorsOutputPath = args[2];
             }
-            IsJMeterMode = true;
         }
 
 

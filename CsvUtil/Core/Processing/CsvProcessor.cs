@@ -1,10 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using jUtils.Core.Html;
 using jUtils.Abstractions;
 using jUtils.Core.Configuration;
-using jUtils.Core.Processing.Common;
 using jUtils.Core.Processing.JMeter;
 using jUtils.Models;
 
@@ -39,24 +37,17 @@ namespace jUtils.Core.Processing
             if (errors.Count > 0 && !string.IsNullOrEmpty(_config.ErrorsOutputPath))
             {
                 var errorProcessor = getProcessor();
-                var erorsLog = errorProcessor.Process(new CsvData() { Rows = errors}, _templatesProvider);                
-                writeResult(erorsLog,_config.ErrorsOutputPath);
-            }          
-       
-            writeResult(reprot,_config.OutputPath);
+                var erorsLog = errorProcessor.Process(new CsvData() { Rows = errors }, _templatesProvider);
+                writeResult(erorsLog, _config.ErrorsOutputPath);
+            }
+
+            writeResult(reprot, _config.OutputPath);
         }
 
         private ICsvProcessor getProcessor()
         {
             ICsvProcessor internalProcessor;
-            if (_config.IsJMeterMode)
-            {
-                internalProcessor = new JMeterCsvProcessor();
-            }
-            else
-            {
-                internalProcessor = new CommonCsvProcessor();
-            }
+            internalProcessor = new JMeterCsvProcessor();
             return internalProcessor;
         }
 

@@ -38,7 +38,6 @@ namespace jUtils.Models
 
         #endregion
 
-
         #region Methods
 
         private static DateTime convertUnixTimeStampToDateTime(double unixTimeStamp)

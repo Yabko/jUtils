@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsvUtil", "CsvUtil\CsvUtil.csproj", "{84736CF4-7B8B-4F81-A39D-04F94AE1550D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jUtils", "CsvUtil\jUtils.csproj", "{84736CF4-7B8B-4F81-A39D-04F94AE1550D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

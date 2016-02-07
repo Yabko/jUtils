@@ -10,52 +10,90 @@ namespace jUtils.Models
 {
     public class JMeterData
     {
+
+
         #region Properties
-        public List<JRow> Rows { get; private set; }
 
         public string MethodName { get; set; }
+        public List<JRow> Rows { get; private set; }
 
-        public Dictionary<string, object> Summary { get; set; }
+        public int CoolMsTime
+        {
+            get { return _coolMsTime; }
+            set { _coolMsTime = value; }
+        }
+        private int _coolMsTime = 60;
+
+        public int NormMsTime
+        {
+            get { return _normMsTime; }
+            set { _normMsTime = value; }
+        }
+        private int _normMsTime = 100;
+
         #endregion
 
         #region Constructor
         public JMeterData(List<JRow> rows, string method)
         {
             MethodName = method;
-            Rows = new List<JRow>(rows.Count);
-            Summary = new Dictionary<string, object>();
-            foreach (var csvRow in rows)
-            {
-                Rows.Add(csvRow);
-            }
-
-            prepareSummary();
+            Rows = rows;
         }
 
-        private void prepareSummary()
+        public Dictionary<string, object> PrepareSummary()
         {
+            var summary = new Dictionary<string, object>();
             var first = Rows.First();
             var last = Rows.Last();
 
-            Summary["Test Start Time"] = first.TimeStamp.ToString(CultureInfo.InvariantCulture);
-            Summary["Test Duration"] = (last.TimeStamp.AddMilliseconds(last.Elapsed) - first.TimeStamp).TotalSeconds + " seconds";
-            Summary["Transactions Count"] = Rows.Count;
-            Summary["Average Response Time"] = Rows.Average(it => it.Elapsed).ToString("N2") + " ms";
-            Summary["Median Response Time"] = Rows.Median(it => it.Elapsed) + " ms";
-            Summary["Min Response Time"] = Rows.Min(it => it.Elapsed) + " ms";
-            Summary["Max Response Time"] = Rows.Max(it => it.Elapsed) + " ms";
+            summary["Test Start Time"] = first.TimeStamp.ToString(CultureInfo.InvariantCulture);
+            summary["Test Duration"] = (last.TimeStamp.AddMilliseconds(last.Elapsed) - first.TimeStamp).TotalSeconds + " seconds";
+            summary["Transactions Count"] = Rows.Count;
+            summary["Average Response Time"] = Rows.Average(it => it.Elapsed).ToString("N2") + " ms";
+            summary["Median Response Time"] = Rows.Median(it => it.Elapsed) + " ms";
+            summary["Min Response Time"] = Rows.Min(it => it.Elapsed) + " ms";
+            summary["Max Response Time"] = Rows.Max(it => it.Elapsed) + " ms";
             if (Rows.Count > 1)
             {
-                Summary["Response Time Deviation"] = Rows.StandardDeviation(it => it.Elapsed).ToString("N2") + " ms";
+                summary["Response Time Deviation"] = Rows.StandardDeviation(it => it.Elapsed).ToString("N2") + " ms";
             }
-            Summary["Code"] = Rows.Select(it => it.ResponceCode).Distinct().Aggregate("", (seed, code) => seed + " " + code);
-            
+            summary["Code"] = Rows.Select(it => it.ResponceCode).Distinct().Aggregate("", (seed, code) => seed + " " + code);
+
             var mode = Rows.Mode(it => it.Elapsed);
             var count = ((double)Rows.Count(it => it.Elapsed == mode) / Rows.Count * 100).ToString("N2");
-            Summary[$"Most Common Value ({count}%)"] = mode + "ms";
-
-
+            summary[$"Most Common Value ({count}%)"] = mode + "ms";
+            return summary;
         }
+
+        public List<string> AnaliseResponseTimes()
+        {
+            // Method ,
+            var analysis = new List<string>();
+            analysis.Add(MethodName);
+            var coolRows = Rows.Where(row => row.Elapsed <= CoolMsTime);
+            var okRows = Rows.Where(row => row.Elapsed <= NormMsTime && row.Elapsed > CoolMsTime);
+            var badRows = Rows.Where(row => row.Elapsed > NormMsTime);
+            var coolMean = coolRows.Median(it => it.Elapsed);
+            var okMean = okRows.Median(it => it.Elapsed);
+            var badMean = badRows.Median(it => it.Elapsed);
+
+            var coolCount = coolRows.Count();
+            var okCount = okRows.Count();
+
+            // Cool Time %, OK Time %, No Ok %,
+            analysis.Add(((double)coolCount / Rows.Count * 100).ToString("N2") + " %");
+            analysis.Add(((double)okCount / Rows.Count * 100).ToString("N2") + " %");
+            analysis.Add(((double)badRows.Count() / Rows.Count * 100).ToString("N2") + " %");
+
+            analysis.Add(coolMean.ToString("N2"));
+            analysis.Add(okMean.ToString("N2"));
+            analysis.Add(badMean.ToString("N2"));
+
+            return analysis;
+        }
+
+
+
 
         #endregion
 

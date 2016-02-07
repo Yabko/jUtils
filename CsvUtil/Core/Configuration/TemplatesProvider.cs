@@ -53,7 +53,7 @@
         }
         private volatile string _summaryTemplate;
 
-        public string AnalysisTemplate
+        public string AnalysisTableTemplate
         {
             get
             {
@@ -62,7 +62,7 @@
                 lock (_lockObj)
                 {
                     if (_analysisTemplate != null) return _analysisTemplate;
-                    _analysisTemplate = getTemplate(_config.AllResultsTableTemplatePath);
+                    _analysisTemplate = getTemplate(_config.AnalysisTableTemplatePath);
                     return _analysisTemplate;
                 }
             }

@@ -67,7 +67,6 @@
     <Compile Include="Core\Html\HtmlSummaryBuilder.cs" />
     <Compile Include="Core\Processing\CsvProcessor.cs" />
     <Compile Include="Core\Html\HtmlTableBuilder.cs" />
-    <Compile Include="Core\Processing\JMeterCsvProcessor.cs" />
     <Compile Include="Models\JMeterData.cs" />
     <Compile Include="Models\JRow.cs" />
     <Compile Include="Program.cs" />

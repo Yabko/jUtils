@@ -17,17 +17,22 @@ namespace jUtils.Core.Html
             var i = 0;
             foreach (var row in data.Rows)
             {
-                var rowClass = i % 2 == 0 ? "evenRow" : "oddRow";
-                sb.AppendLine($"<tr class=\"{rowClass}\">");
-                foreach (var s in row.PlainData)
-                {
-                    sb.Append($"<td>{s}</td>");
-                }
-                sb.AppendLine("</tr>");
+                BuildRow(row.PlainData, sb, i);
                 i++;
             }
 
             return string.Format(allResultsTableTemplate, sb);
+        }
+
+        public void BuildRow(IEnumerable<string> plainData, StringBuilder sb, int i)
+        {
+            var rowClass = i % 2 == 0 ? "evenRow" : "oddRow";
+            sb.AppendLine($"<tr class=\"{rowClass}\">");
+            foreach (var s in plainData)
+            {
+                sb.Append($"<td>{s}</td>");
+            }
+            sb.AppendLine("</tr>");            
         }
     }
 }

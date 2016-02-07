@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CsvUtil.Core.Configuration;
-using CsvUtil.Models;
+using jUtils.Core.Configuration;
+using jUtils.Models;
 
-namespace CsvUtil.Core.Html
+namespace jUtils.Core.Html
 {
     public class HtmlTableBuilder
     {

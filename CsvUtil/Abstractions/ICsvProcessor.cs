@@ -1,7 +1,7 @@
-﻿using CsvUtil.Core.Configuration;
-using CsvUtil.Models;
+﻿using jUtils.Core.Configuration;
+using jUtils.Models;
 
-namespace CsvUtil.Abstractions
+namespace jUtils.Abstractions
 {
     public interface ICsvProcessor
     {

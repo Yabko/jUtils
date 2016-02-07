@@ -1,14 +1,14 @@
-﻿using CsvUtil.Core;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using CsvUtil.Core.Configuration;
-using CsvUtil.Core.Processing;
+using jUtils.Core;
+using jUtils.Core.Configuration;
+using jUtils.Core.Processing;
 
-namespace CsvUtil
+namespace jUtils
 {
     class Program
     {

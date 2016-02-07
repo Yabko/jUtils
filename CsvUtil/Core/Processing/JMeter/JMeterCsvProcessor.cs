@@ -1,11 +1,11 @@
-﻿using CsvUtil.Abstractions;
-using CsvUtil.Core.Configuration;
-using CsvUtil.Core.Html;
-using CsvUtil.Models;
-using System.Linq;
+﻿using System.Linq;
 using System.Text;
+using jUtils.Abstractions;
+using jUtils.Core.Configuration;
+using jUtils.Core.Html;
+using jUtils.Models;
 
-namespace CsvUtil.Core.Processing.JMeter
+namespace jUtils.Core.Processing.JMeter
 {
     public class JMeterCsvProcessor : ICsvProcessor
     {

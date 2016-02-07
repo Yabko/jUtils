@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CsvUtil.Abstractions;
-using CsvUtil.Core.Configuration;
-using CsvUtil.Core.Html;
-using CsvUtil.Models;
+using jUtils.Abstractions;
+using jUtils.Core.Configuration;
+using jUtils.Core.Html;
+using jUtils.Models;
 
-namespace CsvUtil.Core.Processing.Common
+namespace jUtils.Core.Processing.Common
 {
     class CommonCsvProcessor:ICsvProcessor
     {

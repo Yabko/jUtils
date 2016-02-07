@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CsvUtil.Models
+namespace jUtils.Models
 {
     public class JRow
     {

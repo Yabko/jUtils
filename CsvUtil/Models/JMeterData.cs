@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using LinqStatistics;
 
-namespace CsvUtil.Models
+namespace jUtils.Models
 {
     public class JMeterData
     {

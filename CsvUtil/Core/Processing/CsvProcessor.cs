@@ -1,14 +1,14 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using CsvUtil.Abstractions;
-using CsvUtil.Core.Configuration;
-using CsvUtil.Core.Html;
-using CsvUtil.Core.Processing.Common;
-using CsvUtil.Core.Processing.JMeter;
-using CsvUtil.Models;
+using jUtils.Core.Html;
+using jUtils.Abstractions;
+using jUtils.Core.Configuration;
+using jUtils.Core.Processing.Common;
+using jUtils.Core.Processing.JMeter;
+using jUtils.Models;
 
-namespace CsvUtil.Core.Processing
+namespace jUtils.Core.Processing
 {
     class CsvProcessor
     {

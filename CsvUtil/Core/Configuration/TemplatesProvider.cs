@@ -1,4 +1,4 @@
-﻿namespace CsvUtil.Core.Configuration
+﻿namespace jUtils.Core.Configuration
 {
     public class TemplatesProvider
     {

@@ -1,15 +1,14 @@
 ﻿using System.Linq;
 using System.Text;
-using jUtils.Abstractions;
 using jUtils.Core.Configuration;
 using jUtils.Core.Html;
 using jUtils.Models;
 
 namespace jUtils.Core.Processing.JMeter
 {
-    public class JMeterCsvProcessor : ICsvProcessor
+    public class JMeterCsvProcessor
     {
-        public string Process(CsvData data, TemplatesProvider provider)
+        public string Process(JMeterData data, TemplatesProvider provider)
         {          
             var jDatas = from row in data.Rows
                          group row by row.PlainData[2] into grouped

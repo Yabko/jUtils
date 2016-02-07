@@ -19,14 +19,14 @@ namespace jUtils.Models
         #endregion
 
         #region Constructor
-        public JMeterData(List<CsvRow> rows, string method)
+        public JMeterData(List<JRow> rows, string method)
         {
             MethodName = method;
             Rows = new List<JRow>(rows.Count);
             Summary = new Dictionary<string, object>();
             foreach (var csvRow in rows)
             {
-                Rows.Add(new JRow(csvRow));
+                Rows.Add(csvRow);
             }
 
             prepareSummary();

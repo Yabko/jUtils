@@ -14,7 +14,7 @@ namespace jUtils
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Velcome in CSV Utility v." + Assembly.GetExecutingAssembly().GetName().Version);
+            Console.WriteLine("Welcome in J Utility v." + Assembly.GetExecutingAssembly().GetName().Version);
             var config = new Config(args);
             var datestart = DateTime.Now;
             Console.WriteLine("Processing started at: {0}", datestart);

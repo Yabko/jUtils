@@ -53,6 +53,22 @@
         }
         private volatile string _summaryTemplate;
 
+        public string AnalysisTemplate
+        {
+            get
+            {
+                // double check lock
+                if (_analysisTemplate != null) return _analysisTemplate;
+                lock (_lockObj)
+                {
+                    if (_analysisTemplate != null) return _analysisTemplate;
+                    _analysisTemplate = getTemplate(_config.AllResultsTableTemplatePath);
+                    return _analysisTemplate;
+                }
+            }
+        }
+        private volatile string _analysisTemplate;
+
         public TemplatesProvider(Config config)
         {
             _config = config;

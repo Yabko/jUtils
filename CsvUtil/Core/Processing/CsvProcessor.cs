@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using jUtils.Abstractions;
 using jUtils.Core.Configuration;
 using jUtils.Core.Processing.JMeter;
 using jUtils.Models;
@@ -27,28 +26,21 @@ namespace jUtils.Core.Processing
 
         #endregion
 
-        public void CreateHtmlResult(CsvData sourceData)
+        public void CreateHtmlResult(JMeterData sourceData)
         {
-            var internalProcessor = getProcessor();
+            var internalProcessor = new JMeterCsvProcessor();
             // process all data
             var reprot = internalProcessor.Process(sourceData, _templatesProvider);
 
-            var errors = sourceData.Rows.Where(it => it.PlainData[3] != "200").ToList();
+            var errors = sourceData.Rows.Where(it => it.ResponceCode != "200").ToList();
             if (errors.Count > 0 && !string.IsNullOrEmpty(_config.ErrorsOutputPath))
             {
-                var errorProcessor = getProcessor();
-                var erorsLog = errorProcessor.Process(new CsvData() { Rows = errors }, _templatesProvider);
+                var errorProcessor = new JMeterCsvProcessor();
+                var erorsLog = errorProcessor.Process(new JMeterData(errors , ""), _templatesProvider);
                 writeResult(erorsLog, _config.ErrorsOutputPath);
             }
 
             writeResult(reprot, _config.OutputPath);
-        }
-
-        private ICsvProcessor getProcessor()
-        {
-            ICsvProcessor internalProcessor;
-            internalProcessor = new JMeterCsvProcessor();
-            return internalProcessor;
         }
 
         private void writeResult(string result, string filepath)

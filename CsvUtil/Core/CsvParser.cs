@@ -18,24 +18,22 @@ namespace jUtils.Core
             _config = configuration;
         }
 
-        public CsvData Parse()
+        public JMeterData Parse()
         {
             var path = _config.InputPath;
-            var data = new CsvData();
-
             Console.WriteLine("Loading csv report...");
+            var list = new List<JRow>();
             using (var stream = new StreamReader(path))
             {
                 string line;
                 while ((line = stream.ReadLine()) != null)
                 {
-                    var row = new CsvRow();
-                    row.PlainData = line.Split(',');
-                    data.Rows.Add(row);
+                    var row = new JRow(line.Split(','));
+                    list.Add(row);
                 }
             }
             Console.WriteLine("Parsed!");
-            return data;
+            return new JMeterData(list, "");
         }
 
 

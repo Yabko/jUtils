@@ -10,7 +10,7 @@ namespace jUtils.Core.Html
 {
     public class HtmlTableBuilder
     {
-        public string Build(CsvData data, TemplatesProvider provider)
+        public string Build(JMeterData data, TemplatesProvider provider)
         {
             var allResultsTableTemplate = provider.AllResultsTableTemplate;
             var sb = new StringBuilder();

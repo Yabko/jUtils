@@ -5,6 +5,7 @@ using System.Text;
 using jUtils.Core.Configuration;
 using jUtils.Core.Html;
 using jUtils.Models;
+using System.Collections.Generic;
 
 namespace jUtils.Core.Processing
 {
@@ -109,9 +110,22 @@ namespace jUtils.Core.Processing
                 tableBuilder.BuildRow(methodData.AnaliseResponseTimes(), sb, i);
                 i++;                
             }
-
-            var formatted = string.Format(_templatesProvider.AnalysisTableTemplate, sb.ToString());
+           
+            var formatted = string.Format(_templatesProvider.AnalysisTableTemplate, sb.ToString(), getConfData());
             return formatted;
         }
+        public string getConfData()
+        {
+            List<string> configData = new List<string>();
+            configData.Add(JsonConfig.users.ToString());
+            configData.Add(JsonConfig.loop.ToString());
+            configData.Add(JsonConfig.rampup.ToString());
+            configData.Add(JsonConfig.coolTime.ToString());
+            configData.Add(JsonConfig.okTime.ToString());
+
+            String confData = String.Format("<b> Users:{0} <br> Loop:{1} <br> Rampup:{2} <br> CoolTime:<{3}ms <br> OkTime:<{4}ms </b>", configData[0], configData[1], configData[2], configData[3], configData[4]);
+            return confData;
+        }
     }
+    
 }

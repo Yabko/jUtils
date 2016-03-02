@@ -2,6 +2,9 @@
   "methods": 
   {
     "coolTime": "300",
-    "okTime": "800"
+    "okTime": "800",
+    "users": "10",
+    "loop": "5",
+    "rampup": "5"
   }
 }

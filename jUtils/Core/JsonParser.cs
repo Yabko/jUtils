@@ -27,6 +27,9 @@ namespace jUtils.Core
 
             JsonConfig.okTime = array.methods.okTime;
             JsonConfig.coolTime = array.methods.coolTime;
+            JsonConfig.users = array.methods.users;
+            JsonConfig.loop = array.methods.loop;
+            JsonConfig.rampup = array.methods.rampup;
         }
 
     }

@@ -93,6 +93,11 @@ namespace jUtils.Models
             return analysis;
         }
 
+        public List<string> AnalyseAverage()
+        {
+            var avgAnalysis = new List<string>();
+            return avgAnalysis;
+        }
 
 
 

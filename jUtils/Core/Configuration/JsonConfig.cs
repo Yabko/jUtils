@@ -10,6 +10,9 @@ namespace jUtils.Core.Configuration
     {
         public static int coolTime;
         public static int okTime;
+        public static int users;
+        public static int loop;
+        public static int rampup;
     
     }
 }

@@ -8,6 +8,7 @@ namespace jUtils.Core.Configuration
         public string OutputPath { get; private set; }
         public string ErrorsOutputPath { get; private set; }
         public string AnalysisOutputPath { get; private set; }
+        public string JsonConfigPath { get; private set; }
 
         public string CssName { get { return "style.css"; } }
         public string CssFilePath { get { return $@"Templates\{CssName}"; } }
@@ -16,6 +17,7 @@ namespace jUtils.Core.Configuration
         public string AllResultsTableTemplatePath { get { return @"Templates\jAll.html"; } }
         public string SummaryTableTemplatePath { get { return @"Templates\jSummary.html"; } }
         public string AnalysisTableTemplatePath { get { return @"Templates\jAnalysis.html"; } }
+      
 
 
 
@@ -30,6 +32,7 @@ namespace jUtils.Core.Configuration
         public Config(string[] args)
         {
             if (args.Length < 2) throw new ArgumentException("App has to be started with two required parameters, csv file and output file");
+
             InputPath = args[0];
             OutputPath = args[1];
             if (args.Length > 2)
@@ -38,6 +41,10 @@ namespace jUtils.Core.Configuration
                 if (args.Length > 3)
                 {
                     AnalysisOutputPath = args[3];
+                    if(args.Length > 4)
+                    {
+                        JsonConfigPath = args[4];
+                    }
                 }
             }
         }

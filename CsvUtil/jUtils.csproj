@@ -52,6 +52,10 @@
       <HintPath>..\packages\LinqStatistics.2.0.0\lib\net40\LinqStatistics.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -62,9 +66,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Configuration\Config.cs" />
+    <Compile Include="Core\Configuration\JsonConfig.cs" />
     <Compile Include="Core\Configuration\TemplatesProvider.cs" />
     <Compile Include="Core\CsvParser.cs" />
     <Compile Include="Core\Html\HtmlSummaryBuilder.cs" />
+    <Compile Include="Core\JsonParser.cs" />
     <Compile Include="Core\Processing\CsvProcessor.cs" />
     <Compile Include="Core\Html\HtmlTableBuilder.cs" />
     <Compile Include="Models\JMeterData.cs" />
@@ -106,7 +112,12 @@
     <Content Include="Templates\template.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="packages.config" />
+    <Content Include="Config.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="TestData\testData.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

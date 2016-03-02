@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LinqStatistics;
+using jUtils.Core.Configuration;
 
 namespace jUtils.Models
 {
@@ -22,14 +23,14 @@ namespace jUtils.Models
             get { return _coolMsTime; }
             set { _coolMsTime = value; }
         }
-        private int _coolMsTime = 60;
+        private int _coolMsTime = JsonConfig.coolTime;
 
         public int NormMsTime
         {
             get { return _normMsTime; }
             set { _normMsTime = value; }
         }
-        private int _normMsTime = 400;
+        private int _normMsTime = JsonConfig.okTime;
 
         #endregion
 

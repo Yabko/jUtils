@@ -14,13 +14,17 @@ namespace jUtils
     {
         public static void Main(string[] args)
         {
+           
             Console.WriteLine("Welcome in J Utility v." + Assembly.GetExecutingAssembly().GetName().Version);
             var config = new Config(args);
             var datestart = DateTime.Now;
             Console.WriteLine("Processing started at: {0}", datestart);
+
+            var jsonParser = new JsonParser(config);
+            jsonParser.ParseToJsonConfig();
+
             var parser = new CsvParser(config);
             var processor = new CsvProcessor(config);
-
             var data = parser.Parse();
             processor.CreateHtmlResult(data);
 

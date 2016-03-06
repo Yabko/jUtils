@@ -94,26 +94,39 @@ namespace jUtils.Core.Processing
             return formatted;
         }
 
+        // Prepare analysis table
         private string processAnalysis(JMeterData allData)
         {
-            // let split them by label
+
+            var tableBuilder = new HtmlTableBuilder();
+
+            var sbTotal = new StringBuilder();
+            var total = allData.AnaliseResponseTimes();
+            // remove Method name because it is not used
+            total.RemoveAt(0);
+            tableBuilder.BuildRow(total, sbTotal, 0);
+
+
+            // let split all results by method
             var jDatas = from row in allData.Rows
                          group row by row.Label into grouped
                          select new JMeterData(grouped.ToList(), grouped.Key.Trim());
 
-            var sb = new StringBuilder();
             int i = 0;
-            var tableBuilder = new HtmlTableBuilder();
-
+            var sb = new StringBuilder();
             foreach (var methodData in jDatas)
             {
-                tableBuilder.BuildRow(methodData.AnaliseResponseTimes(), sb, i);
-                i++;                
+                // get analyzed data per each method
+                var analyzed = methodData.AnaliseResponseTimes();
+                // add to stringBuilder sb, to get this data as row <tr> </tr>. Use i to determine odd or even row.
+                tableBuilder.BuildRow(analyzed, sb, i++);
             }
            
-            var formatted = string.Format(_templatesProvider.AnalysisTableTemplate, sb.ToString(), getConfData());
+            var formatted = string.Format(_templatesProvider.AnalysisTableTemplate, sb.ToString(), getConfData(), sbTotal.ToString());
             return formatted;
         }
+
+
         public string getConfData()
         {
             List<string> configData = new List<string>();
